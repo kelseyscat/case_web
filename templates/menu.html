@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>功能目录</title>
+		<style type="text/css">
+            .top {
+				height: 50px;
+				text-align: center;
+			}
+
+			.head {
+				width: 1333px;
+				z-index: -100;
+				position: relative;
+			}
+            .main {
+                width:300px;
+                height:160px;
+                position:absolute;
+                left:50%;
+                top:50%;
+                margin-left:-150px;
+                margin-top:-80px;
+            }
+
+			#box1 {
+				width:0px;
+				height: 32px;
+				margin: 30px auto;
+				font-family: 'Microsoft YaHei';
+				font-size: 14px;
+				left: auto;
+			}
+			
+			#box2 {
+				width: 0px;
+				height: 32px;
+				margin: 30px auto;
+				font-family: 'Microsoft YaHei';
+				font-size: 14px;
+				left: auto;
+			}
+			
+			#into_search {
+				width: 78px;
+				height: 32px;
+				float: right;
+				background: black;
+				color: white;
+				text-align: center;
+				line-height: 32px;
+				cursor: pointer;
+			}
+			
+			#into_d3 {
+				width: 78px;
+				height: 32px;
+				float: right;
+				background: black;
+				color: white;
+				text-align: center;
+				line-height: 32px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+        <div class="top">
+            <div class="head">
+                <img src="/static/img/snow.png">
+            </div>
+        </div>
+		<div class="main">
+			<div id="box1">
+				<div id="into_search">
+					<div onclick="window.location.href='http://127.0.0.1:8000/index/'">问答系统</div>
+				</div>
+			</div>
+			
+			<div id="box2">
+				<div id="into_d3">
+					<div onclick="window.location.href='http://127.0.0.1:8000/display/'">可视化界面</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

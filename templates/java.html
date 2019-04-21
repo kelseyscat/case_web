@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>.link {  fill: none;  stroke: #666;  stroke-width: 1.5px;}#licensing {  fill: green;}.link.licensing {  stroke: green;}.link.resolved {  stroke-dasharray: 0,2 1;}circle {  fill: #ccc;  stroke: #333;  stroke-width: 1.5px;}text {  font: 12px Microsoft YaHei;  pointer-events: none;  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;}.linetext {    font-size: 12px Microsoft YaHei;}</style>
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+var links = 
+[
+{type: 'resolved', target: ' 苗天天 ', source: ' 2014台三刑初字第94号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 程涛 ', source: ' 2016浙0104刑初1151号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 鄢秀生 ', source: ' 2017浙0226刑初392号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 陈宏 ', source: ' 2017浙0226刑初401号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 欧华 ', source: ' 2017浙0226刑初398号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 胡晋华 ', source: ' 2017浙0226刑初448号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周进银 ', source: ' 2017浙0226刑初451号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 主红振 ', source: ' 2017浙0226刑初525号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 黄科科 ', source: ' 2017浙0226刑初531号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴昌旭 ', source: ' 2017浙0226刑初547号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴晓英 ', source: ' 2017浙0226刑初59号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 付朝颖 ', source: ' 2017浙0226刑初688号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 谢达刚 ', source: ' 2017浙0226刑初688号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 邬银宁 ', source: ' 2017浙0226刑初703号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周杰标 ', source: ' 2017浙0226刑初87号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 韦勇 ', source: ' 2017浙0226刑初89号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 罗跃 ', source: ' 2017浙0281刑初1162号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 沈蒋锋 ', source: ' 2017浙0281刑初1162号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 杨琪元 ', source: ' 2017浙0281刑初1171号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴小蕾 ', source: ' 2017浙0281刑初1212号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴陈春 ', source: ' 2017浙0281刑初1214号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张良骏 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王履群 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴青 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 叶玉利 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 夏小军 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周莉萍 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 吴林 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 项建定 ', source: ' 2017浙0281刑初121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 胡巧莲 ', source: ' 2017浙0281刑初1244号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 朱祥军 ', source: ' 2017浙0281刑初127号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张平 ', source: ' 2017浙0281刑初1282号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 沈夏根 ', source: ' 2017浙0281刑初1283号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 俞建煌 ', source: ' 2017浙0281刑初1284号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 翁佳斌 ', source: ' 2017浙0281刑初1284号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 闻炯杰 ', source: ' 2017浙0281刑初1284号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 朱卫东 ', source: ' 2017浙0281刑初1332号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 董友夫 ', source: ' 2017浙0281刑初1350号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 阿给以洗 ', source: ' 2017浙0281刑初143号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 向继国 ', source: ' 2017浙0281刑初1553号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 李大东 ', source: ' 2017浙0281刑初1553号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 李磊 ', source: ' 2017浙0281刑初1554号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张海英 ', source: ' 2017浙0281刑初177号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 苗昌军 ', source: ' 2017浙0281刑初179号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 严家宝 ', source: ' 2017浙0281刑初226号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 马光体 ', source: ' 2017浙0281刑初227号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王世豪 ', source: ' 2017浙0281刑初236号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 奕志昂 ', source: ' 2017浙0281刑初245号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 史洪江 ', source: ' 2017浙0281刑初266号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 史真富 ', source: ' 2017浙0281刑初266号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 陈绍南 ', source: ' 2017浙0281刑初281号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王茹聪 ', source: ' 2017浙0281刑初281号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 马良兵 ', source: ' 2017浙0281刑初45号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 李全风 ', source: ' 2017浙0281刑初46号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 唐安军 ', source: ' 2017浙0281刑初47号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 程双全 ', source: ' 2017浙0281刑初493号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 熊永碧 ', source: ' 2017浙0281刑初494号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张作辉 ', source: ' 2017浙0281刑初494号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王震 ', source: ' 2017浙0281刑初535号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 杨春军 ', source: ' 2017浙0281刑初545号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 杨永刚 ', source: ' 2017浙0281刑初546号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 曹建西 ', source: ' 2017浙0281刑初546号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 谢鹏 ', source: ' 2017浙0281刑初546号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 姚大老 ', source: ' 2017浙0281刑初635号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 彭青 ', source: ' 2017浙0281刑初691号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 禹凯 ', source: ' 2017浙0281刑初808号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 汪韦升 ', source: ' 2017浙0281刑初809号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王宏峰 ', source: ' 2017浙0281刑初809号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 费一 ', source: ' 2017浙0281刑初809号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 白健文 ', source: ' 2017浙0281刑初840号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 方梅香 ', source: ' 2017浙0281刑初841号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 木坡石达 ', source: ' 2017浙0281刑初842号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 陈海静 ', source: ' 2017浙0281刑初948号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 夏国华 ', source: ' 2017浙0281刑初949号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 罗全 ', source: ' 2017浙0281刑初949号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 袁丹忆 ', source: ' 2017浙0281刑初985号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 徐文青 ', source: ' 2017浙0281刑初985号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 严清菊 ', source: ' 2017浙0282刑初1059号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 佘波 ', source: ' 2017浙0282刑初1378号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 朱代华 ', source: ' 2017浙0282刑初175号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 沈虎 ', source: ' 2017浙0282刑初175号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 裘斌斌 ', source: ' 2017浙0282刑初175号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 严军达 ', source: ' 2017浙0282刑初453号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 赵厅辉 ', source: ' 2017浙0282刑初453号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 韩永尧 ', source: ' 2017浙0282刑初536号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 郭平容 ', source: ' 2017浙0282刑初第584号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 许玲玲 ', source: ' 2017浙0282刑初650号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 粟勇 ', source: ' 2017浙0282刑初754号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 肖书元 ', source: ' 2017浙0282刑初807号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 何慈疆 ', source: ' 2017浙0302刑初1010号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张荣权 ', source: ' 2017浙0302刑初1012号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 陈剑武 ', source: ' 2017浙0302刑初1030号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 谢彬 ', source: ' 2017浙0302刑初1033号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 程来定 ', source: ' 2017浙0302刑初1033号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周毅 ', source: ' 2017浙0302刑初1034号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 祝建康 ', source: ' 2017浙0302刑初1038号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 雷建群 ', source: ' 2017浙0302刑初1038号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 徐建礼 ', source: ' 2017浙0302刑初1050号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 袁素青 ', source: ' 2017浙0302刑初1051号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 滕晓秋 ', source: ' 2017浙0302刑初1051号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 刘放靖 ', source: ' 2017浙0302刑初1079号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 金光明 ', source: ' 2017浙0302刑初107号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 郭振华 ', source: ' 2016浙0104刑初1160号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 潘瑞忠 ', source: ' 2017浙0302刑初1082号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 姜显苗 ', source: ' 2017浙0302刑初1091号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 管祖海 ', source: ' 2017浙0302刑初1092号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王凯 ', source: ' 2017浙0302刑初110号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王凯 ', source: ' 2017浙0783刑初978号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 陈恩 ', source: ' 2017浙0302刑初1114号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 黄春久 ', source: ' 2017浙0302刑初1121号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 蔡容臻 ', source: ' 2017浙0302刑初1128号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 郑震宇 ', source: ' 2017浙0302刑初1128号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 罗桥军 ', source: ' 2017浙0302刑初1145号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 卢云朋 ', source: ' 2017浙0302刑初1163号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 金敏 ', source: ' 2016浙0302刑初1167号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 马骏杰 ', source: ' 2017浙0302刑初1177号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 麻周 ', source: ' 2017浙0302刑初1178号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张贵斌 ', source: ' 2017浙0302刑初1204号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张贵斌 ', source: ' 2017浙0382刑初202号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 申贤锋 ', source: ' 2017浙0302刑初1237号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 杨峰 ', source: ' 2017浙0302刑初1244号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 晏伟明 ', source: ' 2017浙0302刑初1271号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 晏伟明 ', source: ' 2018浙0302刑初503号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 潘传职 ', source: ' 2017浙0302刑初1281号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 管洪亮 ', source: ' 2017浙0302刑初1296号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 范兴广 ', source: ' 2017浙0302刑初1302号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 曹磊蕾 ', source: ' 2017浙0302刑初132号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周怡 ', source: ' 2017浙0302刑初1346号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 夏碎芳 ', source: ' 2017浙0302刑初1346号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 杨温平 ', source: ' 2017浙0302刑初1375号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 屈利红 ', source: ' 2017浙0302刑初1404号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 方文清 ', source: ' 2017浙0302刑初1446号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 孙慧丹 ', source: ' 2017浙0302刑初1464号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 张建英 ', source: ' 2017浙0302刑初1464号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 李远笔 ', source: ' 2017浙0302刑初1472号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 戴精武 ', source: ' 2017浙0302刑初1477号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 魏志彬 ', source: ' 2017浙0302刑初1483号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 翁克翎 ', source: ' 2017浙0302刑初1489号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 黄广宇 ', source: ' 2017浙0302刑初1490号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 欧平伟 ', source: ' 2017浙0302刑初1501号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 周云爱 ', source: ' 2017浙0302刑初1501号 ', 'rela': '人员'},
+{type: 'resolved', target: ' 王丹 ', source: ' 2017浙0302刑初1516号 ', 'rela': '人员'},
+];
+var nodes = {};
+links.forEach(function(link)
+{
+  link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+  link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+});
+var width = 1920, height = 1080;
+var force = d3.layout.force()
+    .nodes(d3.values(nodes))
+    .links(links)
+    .size([width, height])
+    .linkDistance(180)
+    .charge(-1500)
+    .on("tick", tick)
+    .start();
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+var marker=
+    svg.append("marker")
+    .attr("id", "resolved")
+    .attr("markerUnits","userSpaceOnUse")
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX",32)
+    .attr("refY", -1)
+    .attr("markerWidth", 12)
+    .attr("markerHeight", 12)
+    .attr("orient", "auto")
+    .attr("stroke-width",2)
+    .append("path")
+    .attr("d", "M0,-5L10,0L0,5")
+    .attr('fill','#000000');
+var edges_line = svg.selectAll(".edgepath")
+    .data(force.links())
+    .enter()
+    .append("path")
+    .attr({
+          'd': function(d) {return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y},
+          'class':'edgepath',
+          'id':function(d,i) {return 'edgepath'+i;}})
+    .style("stroke",function(d){
+         var lineColor;
+		 lineColor="#B43232";
+         return lineColor;
+     })
+    .style("pointer-events", "none")
+    .style("stroke-width",0.5)
+    .attr("marker-end", "url(#resolved)" );
+var edges_text = svg.append("g").selectAll(".edgelabel")
+.data(force.links())
+.enter()
+.append("text")
+.style("pointer-events", "none")
+.attr({  'class':'edgelabel',
+               'id':function(d,i){return 'edgepath'+i;},
+               'dx':80,
+               'dy':0
+               });
+edges_text.append('textPath')
+.attr('xlink:href',function(d,i) {return '#edgepath'+i})
+.style("pointer-events", "none")
+.text(function(d){return d.rela;});
+var circle = svg.append("g").selectAll("circle")
+    .data(force.nodes())
+    .enter().append("circle")
+    .style("fill",function(node){
+        var color;
+        var link=links[node.index];
+		color="#F9EBF9";
+        return color;
+    })
+    .style('stroke',function(node){ 
+        var color;
+        var link=links[node.index];
+		color="#A254A2";
+        return color;
+    })
+    .attr("r", 28)
+    .on("click",function(node)
+	{
+        edges_line.style("stroke-width",function(line){
+            console.log(line);
+            if(line.source.name==node.name || line.target.name==node.name){
+                return 4;
+            }else{
+                return 0.5;
+            }
+        });
+    })
+    .call(force.drag);
+var text = svg.append("g").selectAll("text")
+    .data(force.nodes())
+    .enter()
+    .append("text")
+    .attr("dy", ".35em")  
+    .attr("text-anchor", "middle")
+    .style('fill',function(node){
+        var color;
+        var link=links[node.index];
+		color="#A254A2";
+        return color;
+    }).attr('x',function(d){
+        var re_en = /[a-zA-Z]+/g;
+        if(d.name.match(re_en)){
+             d3.select(this).append('tspan')
+             .attr('x',0)
+             .attr('y',2)
+             .text(function(){return d.name;});
+        }
+        
+        else if(d.name.length<=4){
+             d3.select(this).append('tspan')
+            .attr('x',0)
+            .attr('y',2)
+            .text(function(){return d.name;});
+        }else{
+            var top=d.name.substring(0,4);
+            var bot=d.name.substring(4,d.name.length);
+            d3.select(this).text(function(){return '';});
+            d3.select(this).append('tspan')
+                .attr('x',0)
+                .attr('y',-7)
+                .text(function(){return top;});
+            d3.select(this).append('tspan')
+                .attr('x',0)
+                .attr('y',10)
+                .text(function(){return bot;});
+        }
+    });
+function tick() {
+  circle.attr("transform", transform1);
+  text.attr("transform", transform2);
+  edges_line.attr('d', function(d) { 
+      var path='M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y;
+      return path;
+  });  
+    
+  edges_text.attr('transform',function(d,i){
+        if (d.target.x<d.source.x){
+            bbox = this.getBBox();
+            rx = bbox.x+bbox.width/2;
+            ry = bbox.y+bbox.height/2;
+            return 'rotate(180 '+rx+' '+ry+')';
+        }
+        else {
+            return 'rotate(0)';
+        }
+   });
+}
+function linkArc(d) {
+  return 'M '+d.source.x+' '+d.source.y+' L '+ d.target.x +' '+d.target.y
+}
+function transform1(d) {
+  return "translate(" + d.x + "," + d.y + ")";
+}
+function transform2(d) {
+      return "translate(" + (d.x) + "," + d.y + ")";
+}
+</script>
